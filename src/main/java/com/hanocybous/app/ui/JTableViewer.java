@@ -1,4 +1,4 @@
-package com.hanocybous.app.gui.jtableview;
+package com.hanocybous.app.ui;
 
 import com.hanocybous.app.SimpleRasterModel;
 import com.hanocybous.dto.SimpleTableModel;

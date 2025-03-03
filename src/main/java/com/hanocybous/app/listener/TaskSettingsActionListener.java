@@ -1,6 +1,8 @@
-package com.hanocybous.app.gui;
+package com.hanocybous.app.listener;
 
 import com.hanocybous.app.AppController;
+import com.hanocybous.app.model.TaskAction;
+import com.hanocybous.app.ui.JTableViewer;
 import com.hanocybous.dto.SimpleTableModel;
 
 import javax.swing.*;

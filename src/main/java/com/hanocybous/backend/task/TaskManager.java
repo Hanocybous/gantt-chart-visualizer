@@ -1,13 +1,16 @@
-package com.hanocybous.backend;
+package com.hanocybous.backend.task;
 
+import com.hanocybous.backend.controller.IMainController;
+import com.hanocybous.backend.ReportType;
 import com.hanocybous.dto.SimpleTableModel;
 import com.hanocybous.model.Task;
 import com.hanocybous.parser.FileManager;
+import com.hanocybous.reporter.IReporter;
+import com.hanocybous.reporter.ReporterFactory;
 
 import java.util.ArrayList;
-import java.util.List;
 
-class TaskManager implements IMainController {
+public class TaskManager implements IMainController {
 
     private static final String[] columnNames = {"TaskId", "TaskText", "MamaId", "Start", "End", "Cost"};
     private static TaskManager instance = null;

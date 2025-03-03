@@ -1,6 +1,8 @@
-package com.hanocybous.app.gui;
+package com.hanocybous.app.listener;
 
 import com.hanocybous.app.AppController;
+import com.hanocybous.app.model.FilterType;
+import com.hanocybous.app.ui.JTableViewer;
 import com.hanocybous.dto.SimpleTableModel;
 
 import javax.swing.*;
@@ -33,6 +35,7 @@ public class FilterActionListener implements ActionListener {
                 String prefix = JOptionPane.showInputDialog("Enter the prefix:");
                 yield appController.getByPrefix(prefix);
             }
+            default -> throw new IllegalStateException("Unexpected value: " + filterType);
         };
         showFrameWithTable(tblModel, title);
     }

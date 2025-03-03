@@ -1,4 +1,4 @@
-package com.hanocybous.backend;
+package com.hanocybous.backend.task;
 
 import com.hanocybous.dto.SimpleTableModel;
 import com.hanocybous.model.Task;

@@ -1,11 +1,12 @@
-package com.hanocybous.app.gui;
+package com.hanocybous.app.ui;
 
 import com.hanocybous.app.AppController;
-import com.hanocybous.dto.SimpleTableModel;
+import com.hanocybous.app.listener.*;
+import com.hanocybous.app.model.FilterType;
+import com.hanocybous.app.model.TaskAction;
+import com.hanocybous.backend.ReportType;
 
 import javax.swing.*;
-import java.awt.*;
-import java.io.Serial;
 
 public class JFrameLevel00RootFrame extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -13,7 +14,7 @@ public class JFrameLevel00RootFrame extends JFrame {
     private final JDesktopPane theDesktop;
 
     public JFrameLevel00RootFrame() {
-        super("Gantt Manager with Java Swing");
+        super("Gantt Chart Visualizer");
         appController = new AppController();
         theDesktop = new JDesktopPane();
         this.add(theDesktop);

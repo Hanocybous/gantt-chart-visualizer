@@ -1,4 +1,4 @@
-package com.hanocybous.app.gui;
+package com.hanocybous.app.model;
 
 public enum TaskAction {
     ADD,

@@ -1,8 +1,13 @@
-package com.hanocybous;
+package com.hanocybous.model;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public final class ComplexTask extends Task {
+
+    private List<Task> subTasks = new ArrayList<>();
 
     public ComplexTask(int id, String name, int mamaId) {
         super (id,name,mamaId);
@@ -25,22 +30,36 @@ public final class ComplexTask extends Task {
     }
 
     public void removeSubTask(@NotNull Task subTask) {
-        if(this.getStart() == subTask.getStart() && this.getEnd() == subTask.getEnd()) {
+        removeCost(subTask.getCost());
+        if (subTask.getStart() == getStart() || subTask.getEnd() == getEnd()) {
             setStart(-1);
             setEnd(-1);
         }
         else {
-            if(getStart() == subTask.getStart()) {
-                setStart(subTask.getEnd());
-            }
-            if(getEnd() == subTask.getEnd()) {
-                setEnd(subTask.getStart());
+            setStart(-1);
+            setEnd(-1);
+        }
+        for (Task task : getSubTasks()) {
+            if (task.getStart() != -1 && task.getEnd() != -1) {
+                if (getStart() == -1 || getStart() > task.getStart()) {
+                    setStart(task.getStart());
+                }
+                if (getEnd() == -1 || getEnd() < task.getEnd()) {
+                    setEnd(task.getEnd());
+                }
             }
         }
-        removeCost(subTask.getCost());
+    }
+
+    private List<Task> getSubTasks() {
+        return subTasks;
     }
 
     private void removeCost(double cost) {
         addCost(getCost() - cost);
+    }
+
+    public void setSubTasks(List<Task> subTasks) {
+        this.subTasks = subTasks;
     }
 }

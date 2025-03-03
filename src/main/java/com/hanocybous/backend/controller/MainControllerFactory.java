@@ -1,4 +1,4 @@
-package com.hanocybous.backend;
+package com.hanocybous.backend.controller;
 
 import com.hanocybous.backend.task.TaskManager;
 

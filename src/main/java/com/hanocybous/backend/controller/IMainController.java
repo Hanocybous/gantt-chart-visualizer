@@ -1,5 +1,6 @@
-package com.hanocybous.backend;
+package com.hanocybous.backend.controller;
 
+import com.hanocybous.backend.ReportType;
 import com.hanocybous.dto.SimpleTableModel;
 
 /**

@@ -1,4 +1,4 @@
-package com.hanocybous.backend;
+package com.hanocybous.backend.task;
 
 import com.hanocybous.model.SimpleTask;
 import com.hanocybous.model.Task;

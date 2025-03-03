@@ -1,4 +1,4 @@
-package com.hanocybous;
+package com.hanocybous.model;
 
 public final class SimpleTask extends Task {
 
