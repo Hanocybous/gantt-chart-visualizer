@@ -1,0 +1,24 @@
+# This configuration adds labels to pull requests based on modified files.
+
+# Label for changes in Java source files
+java:
+  - '**/*.java'
+
+# Label for changes in Maven configuration files
+maven:
+  - 'pom.xml'
+  - '**/src/main/resources/**'
+
+# Label for changes in GitHub Actions workflow files
+github-actions:
+  - '.github/workflows/**'
+
+# Label for changes in resource files (e.g., images, icons)
+resources:
+  - '**/src/main/resources/**'
+
+# Label for changes in test files
+tests:
+  - '**/src/test/java/**'
+  - '**/src/test/resources/**'
+  
