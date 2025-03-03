@@ -7,16 +7,20 @@
 # documentation.
 
 name: Java CI with Maven
-  
+
 on:
+  # Trigger the workflow on push events to the master branch
   push:
     branches: [ "master" ]
+  # Trigger the workflow on pull request events targeting the master branch
   pull_request:
     branches: [ "master" ]
+  # Schedule the workflow to run every Monday at 00:00 UTC
+  schedule:
+    - cron: '0 0 * * 1'
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
