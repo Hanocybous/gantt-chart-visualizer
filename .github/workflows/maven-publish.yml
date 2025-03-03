@@ -6,6 +6,8 @@ name: Maven Package
 on:
   release:
     types: [created]
+  schedule:
+    - cron: '0 0 * * 1'  # Schedule to run every Monday at midnight UTC
 
 jobs:
   build:
