@@ -1,5 +1,7 @@
 package com.hanocybous.reporter;
 
+import com.hanocybous.model.SimpleTask;
+import com.hanocybous.model.Task;
 import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.FileReader;
