@@ -1,10 +1,15 @@
-package com.hanocybous.model;
+package com.hanocybous.model
 
-public final class SimpleTask extends Task {
+class SimpleTask(
+    id: Int,
+    name: String,
+    mamaId: Int,
+    start: Int,
+    end: Int,
+    cost: Double
+) : Task(id, name, mamaId, start, end, cost) {
 
-    public SimpleTask(int id, String name, int mamaId, int start, int end, double d) {
-        super(id,name,mamaId,start,end,d);
+    override fun addSubTask(subTask: Task) {
+        // Simple Tasks can't have subtasks
     }
-
-    public void addSubTask(Task subTask) { /*Simple Tasks can't have subtasks*/ }
 }

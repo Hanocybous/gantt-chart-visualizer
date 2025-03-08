@@ -1,8 +1,5 @@
 package com.hanocybous.parser;
 
-import com.hanocybous.model.ComplexTask;
-import com.hanocybous.model.SimpleTask;
-import com.hanocybous.model.Task;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;

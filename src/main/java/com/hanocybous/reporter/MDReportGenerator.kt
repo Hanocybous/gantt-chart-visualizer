@@ -1,34 +1,27 @@
-package com.hanocybous.reporter;
+package com.hanocybous.reporter
 
-import com.hanocybous.model.Task;
+import com.hanocybous.model.Task
+import java.io.FileWriter
+import java.io.IOException
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
-
-class MDReportGenerator {
-    private final String path;
-    private final List<Task> tasks;
-    private static final String[] columnNames = {"TaskId", "TaskText", "MamaId", "Start", "End", "Cost"};
-
-    public MDReportGenerator(String path, List<Task> tasks) {
-        this.path = path;
-        this.tasks = tasks;
+class MDReportGenerator(private val path: String, private val tasks: List<Task>) {
+    companion object {
+        private val columnNames = arrayOf("TaskId", "TaskText", "MamaId", "Start", "End", "Cost")
     }
 
-    public int generate() {
-        try (FileWriter myWriter = new FileWriter(path)) {
-            for (int i = 0; i < columnNames.length; i++) {
-                myWriter.write(columnNames[i] + (i == columnNames.length - 1 ? "\t\n" : "\t"));
+    fun generate(): Int {
+        return try {
+            FileWriter(path).use { myWriter ->
+                for (i in columnNames.indices) {
+                    myWriter.write(columnNames[i] + if (i == columnNames.size - 1) "\t\n" else "\t")
+                }
+                for (task in tasks) {
+                    myWriter.write("${task.id}\t${task.name}\t${task.mamaId}\t${task.start}\t${task.end}\t${task.cost}\t\n")
+                }
             }
-            for (Task task : tasks) {
-                myWriter.write(task.getId() + "\t" + task.getName() + "\t" + task.getMamaId() + "\t" +
-                        task.getStart() + "\t" + task.getEnd() + "\t" + task.getCost() + "\t\n");
-            }
-            myWriter.flush();
-            return 0;
-        } catch (IOException e) {
-            return 1;
+            0
+        } catch (e: IOException) {
+            1
         }
     }
 }

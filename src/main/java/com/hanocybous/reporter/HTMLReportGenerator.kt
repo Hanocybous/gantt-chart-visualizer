@@ -1,38 +1,30 @@
-package com.hanocybous.reporter;
+package com.hanocybous.reporter
 
-import com.hanocybous.model.Task;
+import com.hanocybous.model.Task
+import java.io.FileWriter
+import java.io.IOException
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
-
-class HTMLReportGenerator {
-    private final String path;
-    private final List<Task> tasks;
-    private static final String[] columnNames = {"TaskId", "TaskText", "MamaId", "Start", "End", "Cost"};
-
-    public HTMLReportGenerator(String path, List<Task> tasks) {
-        this.path = path;
-        this.tasks = tasks;
+class HTMLReportGenerator(private val path: String, private val tasks: List<Task>) {
+    companion object {
+        private val columnNames = arrayOf("TaskId", "TaskText", "MamaId", "Start", "End", "Cost")
     }
 
-    public int generate() {
-        try (FileWriter myWriter = new FileWriter(path)) {
-            myWriter.write("<html>\n<head>\n<title>Report</title>\n</head>\n<body>\n<table border=\"1\">\n<tr>\n");
-            for (String columnName : columnNames) {
-                myWriter.write("<th>" + columnName + "</th>\n");
+    fun generate(): Int {
+        return try {
+            FileWriter(path).use { myWriter ->
+                myWriter.write("<html>\n<head>\n<title>Report</title>\n</head>\n<body>\n<table border=\"1\">\n<tr>\n")
+                for (columnName in columnNames) {
+                    myWriter.write("<th>$columnName</th>\n")
+                }
+                myWriter.write("</tr>\n")
+                for (task in tasks) {
+                    myWriter.write("<tr>\n<td>${task.id}</td>\n<td>${task.name}</td>\n<td>${task.mamaId}</td>\n<td>${task.start}</td>\n<td>${task.end}</td>\n<td>${task.cost}</td>\n</tr>\n")
+                }
+                myWriter.write("</table>\n</body>\n</html>\n")
             }
-            myWriter.write("</tr>\n");
-            for (Task task : tasks) {
-                myWriter.write("<tr>\n<td>" + task.getId() + "</td>\n<td>" + task.getName() + "</td>\n<td>" +
-                        task.getMamaId() + "</td>\n<td>" + task.getStart() + "</td>\n<td>" + task.getEnd() + "</td>\n<td>" +
-                        task.getCost() + "</td>\n</tr>\n");
-            }
-            myWriter.write("</table>\n</body>\n</html>\n");
-            myWriter.flush();
-            return 0;
-        } catch (IOException e) {
-            return 1;
+            0
+        } catch (e: IOException) {
+            1
         }
     }
 }

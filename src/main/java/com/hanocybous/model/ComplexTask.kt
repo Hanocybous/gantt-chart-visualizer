@@ -1,65 +1,56 @@
-package com.hanocybous.model;
+package com.hanocybous.model
 
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNull
 
-import java.util.ArrayList;
-import java.util.List;
+class ComplexTask(
+    id: Int,
+    name: String,
+    mamaId: Int
+) : Task(id, name, mamaId) {
 
-public final class ComplexTask extends Task {
+    private var subTasks: MutableList<Task> = ArrayList()
 
-    private List<Task> subTasks = new ArrayList<>();
-
-    public ComplexTask(int id, String name, int mamaId) {
-        super (id,name,mamaId);
-    }
-
-    public void addSubTask(Task subTask) {
-        if(this.getStart() == -1 && this.getEnd() == -1) {
-            setStart(subTask.getStart());
-            setEnd(subTask.getEnd());
-        }
-        else  {
-            if(getStart() > subTask.getStart() ) {
-                setStart(subTask.getStart());
+    override fun addSubTask(subTask: Task) {
+        if (this.start == -1 && this.end == -1) {
+            start = subTask.start
+            end = subTask.end
+        } else {
+            if (start > subTask.start) {
+                start = subTask.start
             }
-            if(getEnd() < subTask.getEnd()) {
-                setEnd(subTask.getEnd());
+            if (end < subTask.end) {
+                end = subTask.end
             }
         }
-        addCost(subTask.getCost());
+        addCost(subTask.cost)
     }
 
-    public void removeSubTask(@NotNull Task subTask) {
-        removeCost(subTask.getCost());
-        if (subTask.getStart() == getStart() || subTask.getEnd() == getEnd()) {
-            setStart(-1);
-            setEnd(-1);
-        }
-        else {
-            setStart(-1);
-            setEnd(-1);
-        }
-        for (Task task : getSubTasks()) {
-            if (task.getStart() != -1 && task.getEnd() != -1) {
-                if (getStart() == -1 || getStart() > task.getStart()) {
-                    setStart(task.getStart());
+    fun removeSubTask(@NotNull subTask: Task) {
+        removeCost(subTask.cost)
+        start = -1
+        end = -1
+        for (task in subTasks) {
+            if (task.start != -1 && task.end != -1) {
+                if (start == -1 || start > task.start) {
+                    start = task.start
                 }
-                if (getEnd() == -1 || getEnd() < task.getEnd()) {
-                    setEnd(task.getEnd());
+                if (end == -1 || end < task.end) {
+                    end = task.end
                 }
             }
         }
     }
 
-    private List<Task> getSubTasks() {
-        return subTasks;
+    private fun getSubTasks(): List<Task> {
+        return subTasks
     }
 
-    private void removeCost(double cost) {
-        addCost(getCost() - cost);
+    private fun removeCost(cost: Double) {
+        addCost(cost - cost)
     }
 
-    public void setSubTasks(List<Task> subTasks) {
-        this.subTasks = subTasks;
+    fun setSubTasks(subTasks: MutableList<Task>) {
+        this.subTasks = subTasks
     }
+
 }

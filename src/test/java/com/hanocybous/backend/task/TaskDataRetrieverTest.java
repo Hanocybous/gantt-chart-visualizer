@@ -1,7 +1,5 @@
 package com.hanocybous.backend.task;
 
-import com.hanocybous.model.Task;
-import com.hanocybous.model.SimpleTask;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
