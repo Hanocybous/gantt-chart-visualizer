@@ -9,6 +9,8 @@
 name: Java CI with Maven
 permissions:
   contents: read
+  id-token: write
+  security-events: write
 
 on:
   # Trigger the workflow on push events to the master branch
